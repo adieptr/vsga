@@ -36,7 +36,7 @@
           </a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="#">Peminjam</a></li>
-            <li><a class="dropdown-item" href="#">Nomor ISBN</a></li>
+            <li><a class="dropdown-item" href="addbook.php">Tambah Buku</a></li>
             <li><a class="dropdown-item" href="#">Petugas</a></li>
           </ul>
         </li>
