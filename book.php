@@ -19,7 +19,6 @@ $result = mysqli_query($conn , "SELECT * FROM buku");
 ?>
 
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,68 +40,65 @@ $result = mysqli_query($conn , "SELECT * FROM buku");
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link " aria-current="page" href="#beranda">Beranda</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#items">Buku</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#foot">Kontak</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Lainnya
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="addbook.php">Tambah Buku</a></li>
-            <li><a class="dropdown-item" href="changebook.php">Ubah Buku</a></li>
-            <li><a class="dropdown-item" href="book.php">Rak</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div>
   </div>
 </nav>
 
 
 
-
-<header id="beranda">
-        <div class="left">
-            <h1>Website Perpustakaan <br><span> Siperpus Polije </span></h1>
-            <p>Temukan dan baca buku - buku langka yang jarang ditemui di perpustakaan umum lainnya, hanya di siperpus polije.</p>
-            <a href="book.php">
-                <i class='bx bx-book-bookmark'></i>
-                <span>Lihat Koleksi Buku</span>
-            </a>
-        </div>
-        <img src="img/perpus.png">
-    </header>
-
-    <h2 class="separator">
-        Buku - Buku Paling Populer
-    </h2>
-
 <!-- ========================================================================================= -->
+<a class="btn btn-dark m-3" href="addbook.php" role="button">Tambah Buku</a>
 
 <div class="itemss" id="items">
 
-<?php foreach($result as $row){?>
-    
-<div class="card" style="width: 18rem;">
-  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTk2Ba6tz6b1wgEwFMRxgrqmta2NJovKzo-nA&s" class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title"><?= $row["nama_buku"];?></h5>
-    <p class="card-text"><?= $row["pengarang"];?></p>
-    <p class="card-text"><?= $row["penerbit"];?></p>
-    <a href="book.php" class="btn btn-dark">Lihat Rak</a>
-  </div>
-</div>
+<table class="table">
 
-<?php }?>
+  <thead>
+
+    <tr>
+      <th scope="col">No</th>
+      <th scope="col">Nama Buku</th>
+      <th scope="col">Pengarang</th>
+      <th scope="col">Penerbit</th>
+      <th scope="col">Aksi</th>
+    </tr>
+  </thead>
+  <tbody>
+  <?php $a = 1;?>
+    <?php foreach($result as $row){?>
+        <tr>
+            <td><?= $a;?></td>
+            <td><?= $row["nama_buku"];?></td>
+            <td><?= $row["pengarang"];?></td>
+            <td><?= $row["penerbit"];?></td>
+            <td><a class="btn btn-primary btn-sm" href="#" role="button"> <i class='bx bx-edit'></i></a>
+ <a class="btn btn-danger btn-sm" href="#" role="button" onclick="return confirm('Anda yakin ingin menghapus data?');">
+ <i class='bx bx-trash'></i></a>
+ </td>
+        </tr>
+        <?php $a++;?>
+        <?php }?>
+       
+    <!-- <tr>
+      <th scope="row">1</th>
+      <td>Lord of The Rings</td>
+      <td>Harry Potter</td>
+      <td>Atomic Habits</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Herman Wijaya</td>
+      <td>Haji Naim</td>
+      <td>Neymar Senior</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>Gramedia</td>
+      <td>Yamaha</td>
+      <td>Komatsu</td>
+    </tr> -->
+  </tbody>
+</table>
+
 
     </div>
 

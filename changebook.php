@@ -1,59 +1,3 @@
-<?php
-
-$conn = mysqli_connect("localhost", "root", "", "vsga");
-
-function query($query){
-    global $conn;
-    $result = mysqli_query($conn, $query);
-    $rows =[];
-    while($row = mysqli_fetch_assoc($result)){
-        $rows[] = $row;
-    }
-
-    return $rows;
-}
-
-function tambah($data){
-
-  global $conn;
-  $nama = htmlspecialchars($data["nama_buku"]);
-  $pengarang = htmlspecialchars($data["pengarang"]);
-  $penerbit = htmlspecialchars($data["penerbit"]);
-
-  $query = "INSERT INTO buku
-  VALUES
-  ('', '$nama', '$pengarang','$penerbit')";
-  mysqli_query($conn, $query);
-
-  return mysqli_affected_rows($conn);
-
-}
-
-
-if(isset($_POST["submit"])){
-
-  if(tambah($_POST) > 0){
-      echo "
-      <script>
-      alert('data berhasil ditambahkan');
-      document.location.href = 'index.php';
-      </script>
-      ";
-      
-  } else{
-      echo "
-      <script>
-      alert('data gagal ditambahkan');
-      document.location.href = 'addbook.php';
-      </script>
-      ";
-  }
-}
-
-
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -70,18 +14,17 @@ if(isset($_POST["submit"])){
 </head>
 <body>
 
-
-
 <section class="form1">
 
-<form action="" method="post" enctype="multipart/form-data">
+
+<form>
   <div class="mb-3">
     <label for="text1" class="form-label">Nama Buku</label>
-    <input type="text"  name="nama_buku" class="form-control" id="text1" aria-describedby="texthelp">
+    <input type="text" class="form-control" id="text1" aria-describedby="texthelp">
     <div id="texthelp" class="form-text"></div>
   </div>
-
-  <!-- <div class="mb-3">
+<!-- 
+  <div class="mb-3">
     <label for="text1" class="form-label">Nomor ISBN</label>
     <input type="text" class="form-control" id="text1" aria-describedby="texthelp">
     <div id="texthelp" class="form-text"></div>
@@ -89,13 +32,13 @@ if(isset($_POST["submit"])){
 
   <div class="mb-3">
     <label for="text1" class="form-label">Pengarang</label>
-    <input type="text"   name="pengarang" class="form-control" id="text1" aria-describedby="texthelp">
+    <input type="text" class="form-control" id="text1" aria-describedby="texthelp">
     <div id="texthelp" class="form-text"></div>
   </div>
 
   <div class="mb-3">
     <label for="text1" class="form-label">Penerbit</label>
-    <input type="text"  name="penerbit" class="form-control" id="text1" aria-describedby="texthelp">
+    <input type="text" class="form-control" id="text1" aria-describedby="texthelp">
     <div id="texthelp" class="form-text"></div>
   </div>
 
@@ -124,7 +67,7 @@ if(isset($_POST["submit"])){
   </div> -->
 
   
-  <button type="submit"  name="submit" class="btn btn-primary">Tambah</button>
+  <button type="submit" class="btn btn-primary">Ubah</button>
 </form>
 
 </section>
